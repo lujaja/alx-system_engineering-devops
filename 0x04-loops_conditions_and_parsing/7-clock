@@ -5,12 +5,13 @@
 ((hh=0))
 while [ $hh -lt 12 ]
 do
-	((mm=0))
+	((mm=1))
 	echo "Hour: $hh"
 	while [ $mm -lt 60 ]
 	do
 		echo "$mm"
 		((mm+=1))
+		sleep 0.1
 	done
 	((hh+=1))
 done
