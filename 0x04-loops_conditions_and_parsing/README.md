@@ -10,8 +10,7 @@ Your Bash script must pass Shellcheck (version 0.7.0) without any error
 The first line of all your Bash scripts should be exactly #!/usr/bin/env bash
 The second line of all your Bash scripts should be a comment explaining what is the script doing
 
-# Tasks
-0. Create a SSH RSA key pair
+# 0. Create a SSH RSA key pair
 mandatory
 Read for this task:
 
@@ -29,3 +28,27 @@ Share your public key in your answer file 0-RSA_public_key.pub
 Fill the SSH public key field of your intranet profile with the public key you just generated
 Keep the private key to yourself in a secure location, you will use it later to connect to your servers using SSH. Some storing ideas are Dropbox, Google Drive, password manager, USB key. Failing to do so will prevent you to access your servers, which will prevent you from doing your projects
 If you decide to add a passphrase to your key, make sure to save this passphrase in a secure location, you will not be able to use your keys without the passphrase
+
+# 1. For Best School loop
+mandatory
+Write a Bash script that displays Best School 10 times.
+
+Requirement:
+
+You must use the for loop (while and until are forbidden)
+sylvain@ubuntu$ head -n 2 1-for_best_school
+#!/usr/bin/env bash
+This script is displaying "Best School" 10 times
+Note that:
+
+The first line of my Bash script starts with #!/usr/bin/env bash
+The second line of my Bash scripts is a comment explaining what it is doing
+
+# 2. While Best School loop
+mandatory
+Write a Bash script that displays Best School 10 times.
+
+Requirements:
+
+You must use the while loop (for and until are forbidden)
+

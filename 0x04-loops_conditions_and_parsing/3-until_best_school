@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This bash script displays "Best School" to times
+((n=0))
+until ((n == 10))
+do
+	echo "Best School"
+	((n+=1))
+done
