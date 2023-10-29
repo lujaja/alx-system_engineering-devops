@@ -2,7 +2,7 @@
 # Thid bash scrip displays
 # the conted of the current directory in a list format
 # where only the part of the name after the first dash if displayed
-list=$(ls)
+list=$(ls ./)
 for name in $list
 do
 	filename=$(basename "$name")
