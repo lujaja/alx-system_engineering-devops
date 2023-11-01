@@ -1,2 +1,8 @@
 #!/usr/bin/env bash
-# Lujaja Luvuga
+# This scripts indefinitley writes to the file /tmp/my_process
+# and posses for 2s
+while :
+do
+	echo "I am alive" > "/tmp/my_process"
+	sleep 2
+done
