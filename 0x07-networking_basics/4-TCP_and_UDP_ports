@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This bash script only displays listening socked, pid and name of the progran
+netstat -pl
