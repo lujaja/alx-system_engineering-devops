@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Lujaja Luvuga
+# This bash script configures ubuntu server hosts file with the following
+# localhost resolves to 127.0.0.2
+# facebook.com resolves to 8.8.8.8
+# shellcheck disable=SC2236
+# shellcheck disable=SC2143
+sudo cp -r "/etc/hosts" "/hosts.new"
+tmp="/hosts.new"
+if [ ! -z "$(grep localhost "$tmp")" ]
+then
+	sudo sed -i '/localhost/ d' "$tmp"
+fi
+if [ ! -z "$(grep facebook.com "$tmp")" ]
+then
+	sudo sed -i '/facebook.com/ d' "$tmp"
+fi
+sudo sed -i '1i 127.0.0.2       localhost' "$tmp"
+sudo sed -i '2i 8.8.8.8       facebook.com' "$tmp"
+sudo cp -f "$tmp" "/etc/hosts"
+sudo rm -f "/hosts.new"
