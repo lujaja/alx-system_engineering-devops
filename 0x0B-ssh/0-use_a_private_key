@@ -2,9 +2,9 @@
 # A bash script that uses ssh to connect to a my server
 
 # set variables
-private_key=~/.ssh/school
+private_key="-i ~/.ssh/school"
 user=ubuntu
 server_ip=100.26.50.181
 
 # Connect using ssh with single-character flags
-ssh -i "$private_key" "$user"@"$server_ip"
+ssh "$private_key" "$user"@"$server_ip"
