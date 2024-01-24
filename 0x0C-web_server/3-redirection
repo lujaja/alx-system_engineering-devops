@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# /redirect_me direct to another page permanently
+apt-get update -y
+apt-get install nginx -y
+ufw allow "Nginx HTTP"
+mkdir -p /var/www/html/
+chmod -R 755 /var/www
+echo "Hello World!" | tee /var/www/html/index.html > /dev/null 2>&1
+CONFIG=\
+"server {
+	listen 80 default_server;
+	listen [::]: 80 default_server;
+	root var/www/html;
+	index index.html index.htm index.ngix-debian.html
+	server_name_;
+	location / {
+	try-files \$uri \$uri/ = 404;
+	}
+	if (\$request_filename ~ redirect_me){
+		rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+	}
+}"
+
+bash -c "echo -e '$CONFIG' > /etc/sites-enabled/default"
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+	service nginx start
+else
+	service nginx restart
+fi

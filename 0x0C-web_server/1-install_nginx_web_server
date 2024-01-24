@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Installl Nginx on a web server
+apt-get update -y
+apt-get install nginx -y
+mkdir -p /var/www/html/
+chmod -R 755 /var/www
+sudo ufw allow " Nginx HTTP"
+echo 'Hello World!' | tee /var/www/html/index.html > /dev/null
+if [ "$(pgre -c nginx)" -le 0 ]; then
+	service nginx start
+else
+	service nginx restart
+fi
