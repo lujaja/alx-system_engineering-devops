@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# /redirect_me direct to another page permanently
+apt-get update -y
+apt-get install nginx -y
+ufw allow "Nginx HTTP"
+echo "Hello World!" | tee /var/www/html/index.html > /dev/null 2>&1
+sed -i '46i ^	rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4/ permanent;' /etc/nginx/sites-available/default
+echo   "Ceci n'est pas une page" | tee /var/www/html/custom_404.html > dev/null > 2>&1
+sed -i "46i error_page 404 / custom_404.html;" /etc/nginx/sites-available/default
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+	service nginx start;
+else
+	service nginx reload
+fi
