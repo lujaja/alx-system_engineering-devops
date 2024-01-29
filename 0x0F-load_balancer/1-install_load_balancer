@@ -10,8 +10,8 @@ frontend haproxy_balancer
     
 backend webservers
     balance roundrobin
-    server 26071-web-01 100.26.50.181:80 check
-    server 26071-web-02 18.207.141.60:80 check
+    server 310360-web-01 100.26.50.181:80 check
+    server 310360-web-02 18.207.141.60:80 check
 "
 # Update packages
 apt-get -y update
@@ -20,7 +20,6 @@ apt-get -y upgrade
 # Add HAProxy PPA
 apt-get install -y --no-install-recomends software-properties-common
 add-apt-repository -y ppa:vbernat/haproxy-2.8
-apt-get -y update
 
 # Install HAProxy
 apt-get -y install haproxy=2.8.\*
