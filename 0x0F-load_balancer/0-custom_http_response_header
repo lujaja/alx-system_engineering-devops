@@ -12,7 +12,6 @@ echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null 2>&1
 sudo ufw allow "Nginx HTTP"
 # resart the nginx server
 sudo service nginx start
-url="https://www.youtube.com/watch?v=QH2-TGUlwu4"
 custom_404_content="Ceci n'est pas une page"
 hostname="$HOSTNAME"
 # configure  redirection 
@@ -31,7 +30,8 @@ echo "server {
 	}
 	
 	location /redirect_me {
-		return 301 $url permanent;
+		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4\$request_uri permanent;
+	}
 
 	error_page 404 /custom_404.html;
 	location /404 {
