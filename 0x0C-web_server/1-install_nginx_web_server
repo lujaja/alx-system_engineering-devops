@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Installl Nginx on a web server
-if (( "$(ps -aux | grep -c nginx)" == 0 )); then
+if (( "$(pgrep -c nginx)" == 0 )); then
 	echo "Updating apt cache.."
 	sudo apt-get update -y > /dev/null
 	echo "Installing nginx dependencies..."

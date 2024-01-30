@@ -1,6 +1,6 @@
 #!/bin/bash
 # redirect permanent
-if (( "$(ps aux | grep -c nginx)" > 0)); then
+if (( "$(pgrep -c nginx)" > 0)); then
 	echo "Nginx server already installed & running"
 	echo "Now adding redirect_me"
 	echo "server {
@@ -14,7 +14,7 @@ if (( "$(ps aux | grep -c nginx)" > 0)); then
 			server_name _;
 
 			location / {
-				try_files $uri $uri/ =404;
+				try_files \$uri \$uri/ =404;
 			}
 
 			rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4/ permanent;
@@ -24,7 +24,7 @@ if (( "$(ps aux | grep -c nginx)" > 0)); then
 		sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 		echo "redirect_me done succesfully"
 		echo "Reloading Nginx server..."
-		sudo service nginx start > /dev/null
+		sudo service nginx start
 		exit 0
 	else
 		echo "cleaning..."
@@ -38,7 +38,7 @@ if (( "$(ps aux | grep -c nginx)" > 0)); then
 		sudo apt-get install -y nginx > /dev/null
 		echo "Hello World!" | sudo tee /var/www/html/index.html
 		echo "Starting server..."
-		sudo service start > dev/null
+		sudo service start
 		sudo ./3-redirection
 fi
 
