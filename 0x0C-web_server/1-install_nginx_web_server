@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 # Installl Nginx on a web server
-apt-get update -y
-apt-get install nginx -y
-mkdir -p /var/www/html/
-chmod -R 755 /var/www
-sudo ufw allow " Nginx HTTP"
-echo 'Hello World!' | tee /var/www/html/index.html > /dev/null
-if [ "$(pgre -c nginx)" -le 0 ]; then
-	service nginx start
+if (( "$(ps -aux | grep -c nginx)" == 0 )); then
+	echo "Updating apt cache.."
+	sudo apt-get update -y > /dev/null
+	echo "Installing nginx dependencies..."
+	sudo apt-get install -y nginx-common nginx-core > /dev/null
+	echo "installing Nginx.."
+	apt-get install -y nginx > /dev/null
+	echo "Allowing Nginx-HTTP via ufw"
+	sudo ufw allow " Nginx HTTP"
+	service nginx start > /dev/null
+	echo "Done!"
 else
-	service nginx restart
+	echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 fi
+echo "Configuration complete"
