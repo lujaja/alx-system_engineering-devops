@@ -1,0 +1,10 @@
+frontend www_frontend
+    bind *:443 ssl crt /etc/letsencrypt/live/www.jarz.tech/fullchain.pem
+    reqadd X-Forwarded-Proto:\ https
+    default_backend www_backend
+
+backend www_backend
+    mode http
+    balance roundrobin
+	server 310360-web-01 52.91.154.167 check
+	server 310360-web-02 18.207.141.60 check
