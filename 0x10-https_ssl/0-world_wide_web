@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# script to check domain configurations
+# shellcheck disable=SC2086
+
+display_info() {
+        subdomain=$1
+        record_type=$2
+        destination=$3
+        echo "The subdomain $subdomain is a $record_type and points to $destination"
+}
+
+# Function to get the DNS information for a subdomain
+get_dns_info() {
+        domain=$1
+        subdomain=$2
+        dig +short "$subdomain.$domain"
+}
+
+# main script
+domain=$1
+subdomain=$2
+
+subdomains=("www" "lb-01" "web-01" "web-02")
+
+if [ -z "$subdomain" ]; then
+        for sub in "${subdomains[@]}"; do
+                result=$(get_dns_info "$domain" "$sub")
+                display_info "$sub" "A" "$result"
+        done
+else
+        # Display info for the specified domain
+        result=$(get_dns_info "$domain" "$subdomain")
+        display_info "$subdomain" "A" "$result"
+fi
+
