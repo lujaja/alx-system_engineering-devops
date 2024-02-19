@@ -10,10 +10,10 @@ from urllib.parse import urlparse
 
 
 def get_employees_todo(employee_id):
-    usernameurl = "https://jsonplaceholder.typicode.com/users/{}".format(
+    usernameurl = "https://jsonplaceholder.typicode.com/users/{}/".format(
             employee_id
         )
-    url = "{}/todos".format(usernameurl)
+    url = "{}todos/".format(usernameurl)
     response = requests.get(url)
     username_r = requests.get(usernameurl)
     if response.status_code != 200 and username_r.status_code != 200:
@@ -27,9 +27,9 @@ def get_employees_todo(employee_id):
     user_id = str(employee_id)
     lst = []
     for todo in todos:
-        lst.append({"task": todo['title'],
-                    "completed": str(todo['completed']),
-                    "username": username['username']})
+        lst.append({'username': username['username'],
+                    'completed': todo['completed'],
+                    'task': todo['title']})
     dictionary = {user_id: lst}
     with open(filename, 'w', encoding='utf-8') as fd:
         json.dump(dictionary, fd)
