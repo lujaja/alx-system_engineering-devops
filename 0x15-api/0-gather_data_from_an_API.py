@@ -33,7 +33,7 @@ def get_employees_todo(employee_id):
         len(todos)
     ))
     for do in completed_tasks:
-        print("\t{}".format(do))
+        print("\t {}".format(do))
 
 
 if __name__ == "__main__":
