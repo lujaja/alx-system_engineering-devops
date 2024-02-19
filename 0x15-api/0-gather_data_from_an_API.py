@@ -27,7 +27,7 @@ def get_employees_todo(employee_id):
 
     tasks_done = len(completed_tasks)
 
-    print("Employee {} is done with tasks ({}/{}):".format(
+    print("Employee {} is done with tasks({}/{}):".format(
         username['name'],
         tasks_done,
         len(todos)
