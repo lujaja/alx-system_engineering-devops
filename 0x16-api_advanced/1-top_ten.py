@@ -16,10 +16,11 @@ def top_ten(subreddit):
     if r.status_code != 200:
         print(None)
         return
-    data = r.json()
-    posts = data['data']['children']
-    titles = [post['data']['title'] for post in posts]
-    if titles:
-        [print(title) for title in titles]
-    else:
+    try:
+        data = r.json()
+        posts = data['data']['children']
+        titles = [post['data']['title'] for post in posts]
+        if titles:
+            [print(title) for title in titles]
+    except Exception as err:
         print(None)
