@@ -11,8 +11,10 @@ def top_ten(subreddit):
             "AppleWebKit/537.36 (KHTML, like Gecko)"
             "Chrome/91.0.4472.124 Safari/537.36"
         }
-
-    r = requests.get(url, headers=headers, allow_redirects=False)
+    r = requests.get(
+            url,
+            headers=headers,
+            allow_redirects=False)
     if r.status_code != 200:
         print(None)
         return
